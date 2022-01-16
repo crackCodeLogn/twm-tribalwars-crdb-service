@@ -77,4 +77,9 @@ public class VillaController {
                 .addVillas(villa)
                 .build());
     }
+
+    @GetMapping("/test-2")
+    public String test2() {
+        return villaDao.getVillas("enp999").getVillasList().toString();
+    }
 }
