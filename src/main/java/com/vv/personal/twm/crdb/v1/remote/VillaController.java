@@ -47,7 +47,7 @@ public class VillaController {
         return VillaProto.VillaList.newBuilder().build();
     }
 
-    @GetMapping("/test")
+    /*@GetMapping("/test")
     public void test() {
         VillaProto.Villa villa = VillaProto.Villa.newBuilder()
                 .setName("dataline")
@@ -81,5 +81,5 @@ public class VillaController {
     @GetMapping("/test-2")
     public String test2() {
         return villaDao.getVillas("enp999").getVillasList().toString();
-    }
+    }*/
 }
