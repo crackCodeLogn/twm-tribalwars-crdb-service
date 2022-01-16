@@ -4,11 +4,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.Instant;
-import java.util.UUID;
 
 /**
  * @author Vivek
@@ -18,21 +16,11 @@ import java.util.UUID;
 @Table(name = "tw_villa")
 public class VillaEntity {
 
-    @Id
-    @Column(name = "id_table_villa")
-    private UUID villaEntityId;
-
-    @Column(name = "world")
-    private String world;
+    @EmbeddedId
+    private VillaIdentifier villaIdentifier;
 
     @Column(name = "name_villa")
     private String villaName;
-
-    @Column(name = "x")
-    private int x;
-
-    @Column(name = "y")
-    private int y;
 
     @Column(name = "id_villa")
     private String villaId;
@@ -82,20 +70,16 @@ public class VillaEntity {
     @Column(name = "farm")
     private String farmStrength;
 
-    @Column(name = "cre_ts")
-    private Instant createdTimestamp;
-
     public VillaEntity() {
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-                .append("villaEntityId", villaEntityId)
-                .append("world", world)
+                .append("world", villaIdentifier.getWorld())
                 .append("villaName", villaName)
-                .append("x", x)
-                .append("y", y)
+                .append("x", villaIdentifier.getX())
+                .append("y", villaIdentifier.getY())
                 .append("villaId", villaId)
                 .append("villaType", villaType)
                 .append("wall", wall)
@@ -112,25 +96,16 @@ public class VillaEntity {
                 .append("palad", palad)
                 .append("noble", noble)
                 .append("farmStrength", farmStrength)
-                .append("createdTimestamp", createdTimestamp)
+                .append("createdTimestamp", villaIdentifier.getCreatedTimestamp())
                 .toString();
     }
 
-    public UUID getVillaEntityId() {
-        return villaEntityId;
+    public VillaIdentifier getVillaIdentifier() {
+        return villaIdentifier;
     }
 
-    public VillaEntity setVillaEntityId(UUID villaEntityId) {
-        this.villaEntityId = villaEntityId;
-        return this;
-    }
-
-    public String getWorld() {
-        return world;
-    }
-
-    public VillaEntity setWorld(String world) {
-        this.world = world;
+    public VillaEntity setVillaIdentifier(VillaIdentifier villaIdentifier) {
+        this.villaIdentifier = villaIdentifier;
         return this;
     }
 
@@ -140,24 +115,6 @@ public class VillaEntity {
 
     public VillaEntity setVillaName(String villaName) {
         this.villaName = villaName;
-        return this;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public VillaEntity setX(int x) {
-        this.x = x;
-        return this;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public VillaEntity setY(int y) {
-        this.y = y;
         return this;
     }
 
@@ -302,15 +259,6 @@ public class VillaEntity {
 
     public VillaEntity setFarmStrength(String farmStrength) {
         this.farmStrength = farmStrength;
-        return this;
-    }
-
-    public Instant getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public VillaEntity setCreatedTimestamp(Instant createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
         return this;
     }
 }
