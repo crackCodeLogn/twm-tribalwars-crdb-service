@@ -4,7 +4,12 @@ import com.vv.personal.twm.artifactory.generated.tw.VillaProto;
 import com.vv.personal.twm.crdb.v1.data.dao.VillaDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Vivek
@@ -40,5 +45,36 @@ public class VillaController {
             log.error("Failed to get all villas for {}. ", world, e);
         }
         return VillaProto.VillaList.newBuilder().build();
+    }
+
+    @GetMapping("/test")
+    public void test() {
+        VillaProto.Villa villa = VillaProto.Villa.newBuilder()
+                .setName("dataline")
+                .setWorld("enp999")
+                .setFarmStrength("24000/24000")
+                .setX(999)
+                .setY(999)
+                .setId("99999")
+                .setTroops(VillaProto.Troops.newBuilder()
+                        .setNb(99)
+                        .setWl(20)
+                        .setSp(999)
+                        .setSw(999)
+                        .setAx(999)
+                        .setAr(999)
+                        .setSu(999)
+                        .setLc(999)
+                        .setMa(999)
+                        .setHc(999)
+                        .setRm(999)
+                        .setCt(999)
+                        .setPd(999)
+                        .build())
+                .build();
+
+        villaDao.addVillas(VillaProto.VillaList.newBuilder()
+                .addVillas(villa)
+                .build());
     }
 }
