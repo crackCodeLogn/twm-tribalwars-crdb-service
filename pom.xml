@@ -16,7 +16,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
         <spring-feign.version>1.4.7.RELEASE</spring-feign.version>
-        <jpa.version>2.2.3</jpa.version>
+        <jkt-pa.version>2.2.3</jkt-pa.version>
         <springfox.version>3.0.0</springfox.version>
         <google-gson.version>2.9.0</google-gson.version>
         <google-guava.version>31.0.1-jre</google-guava.version>
@@ -73,7 +73,7 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${jpa.version}</version>
+            <version>${jkt-pa.version}</version>
         </dependency>
 
         <dependency>
